@@ -19,3 +19,7 @@ Route::get('cursos',  [CursoController::class, 'index']);
 Route::get('cursos/create',  [CursoController::class, 'create']);
 Route::get('cursos/{curso}',  [CursoController::class, 'show']);
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
