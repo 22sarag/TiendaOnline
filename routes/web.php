@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,8 @@ Route::get('/', HomeController::class);
 Route::get('cursos',  [CursoController::class, 'index']);
 Route::get('cursos/create',  [CursoController::class, 'create']);
 Route::get('cursos/{curso}',  [CursoController::class, 'show']);
+
+Route::resource('productos', ProductoController::class);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
