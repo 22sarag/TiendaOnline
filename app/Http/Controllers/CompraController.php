@@ -6,6 +6,7 @@ use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\TipoProducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompraController extends Controller
 {
@@ -40,7 +41,22 @@ class CompraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cantidad' => 'required'
+        ]);
+
+        $compra = new Compra;
+        $compra->cantidad = $request->input('cantidad');
+        $compra->user_id = Auth::id();
+        $compra->producto_id = $request->input('producto_id');
+        $compra->save();
+
+        //$productos = Producto::all();
+        //$tipoproductos = TipoProducto::all();
+        
+        return redirect()->route('compras.show', $compra);
+
+        //return view('compras.index', compact(['productos', 'tipoproductos']));
     }
 
     /**
@@ -49,9 +65,12 @@ class CompraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Compra $compra)
     {
-        //
+        $productos = Producto::all();
+        $user = Auth::user();
+
+        return view('compras.show', compact(['compra', 'productos', 'user']));
     }
 
     /**
