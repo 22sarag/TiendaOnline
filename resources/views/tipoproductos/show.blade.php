@@ -17,15 +17,7 @@
                         <h2 class="text-center text-gray-800 text-2xl font-bold pt-4">Nombre: {{$tipoproducto->nombre}}</h2>                        
                         <div class="grid grid-cols-4 w-72 lg:w-5/6 m-auto bg-indigo-50 mt-2 p-4 lg:p-4 rounded-2xl">
                         <div class="col-span-2 pt-1">
-                            <p class="text-gray-800 font-bold lg:text-sm">Descripcion:</p><p class="text-gray-800 font-regular lg:text-sm">{{$tipoproducto->descripcion}}</p>
-                            <p class="text-gray-800 font-bold lg:text-sm">Cantidad:</p><p class="text-gray-800 font-regular lg:text-sm">{{$tipoproducto->cantidad}}</p>
-                            <p class="text-gray-800 font-bold lg:text-sm">Proveedor:</p><p class="text-gray-800 font-regular lg:text-sm">
-                                @foreach ($proveedores as $proveedor)
-                                    @if ($proveedor->id == $tipoproducto->proveedor_id)
-                                        {{$proveedor->name}}
-                                    @endif
-                                @endforeach
-                            </p>    
+                            <p class="text-gray-800 font-bold lg:text-sm">/Nombre: </p><p class="text-gray-800 font-regular lg:text-sm">{{$tipoproducto->nombre}}</p>    
                         </div>
                     </div>                                                
                     <div class="text-center">

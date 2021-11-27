@@ -16,8 +16,7 @@ class TipoProductoController extends Controller
     public function index()
     {
         $tipoproductos = TipoProducto::all();
-        $proveedores = Proveedor::all();
-        return view('tipoproductos.index', compact(['tipoproductos', 'proveedores']));
+        return view('tipoproductos.index', compact('tipoproductos'));
     }
 
     /**
@@ -26,9 +25,8 @@ class TipoProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $proveedores = Proveedor::all();
-        return view('tipoproductos.create', compact('proveedores'));
+    {        
+        return view('tipoproductos.create');
     }
 
     /**
@@ -40,23 +38,16 @@ class TipoProductoController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'cantidad' => 'required',
-            'proveedor_id' => 'required'            
+            'nombre' => 'required',          
         ]);
 
         $tipoproducto = new TipoProducto;
-        $tipoproducto->nombre = $request->input('nombre');
-        $tipoproducto->descripcion = $request->input('descripcion');
-        $tipoproducto->cantidad = $request->input('cantidad');
-        $tipoproducto->proveedor_id = $request['proveedor_id'];
+        $tipoproducto->nombre = $request->input('nombre');    
 
         $tipoproducto->save();
 
         $tipoproductos = TipoProducto::all();
-        $proveedores = Proveedor::all();
-        return view('tipoproductos.index', compact(['tipoproductos', 'proveedores']));
+        return view('tipoproductos.index', compact('tipoproductos'));
     }
 
     /**
@@ -66,10 +57,8 @@ class TipoProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(TipoProducto $tipoproducto)
-    {
-        //$tipoproducto = TipoProducto::find($tipoproducto->id);
-        $proveedores = Proveedor::all();
-        return view('tipoproductos.show', compact(['tipoproducto', 'proveedores']));
+    {        
+        return view('tipoproductos.show', compact('tipoproducto'));
     }
 
     /**
@@ -79,9 +68,8 @@ class TipoProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(TipoProducto $tipoproducto)
-    {
-        $proveedores = Proveedor::all();
-        return view('tipoproductos.edit', compact(['tipoproducto','proveedores']));
+    {        
+        return view('tipoproductos.edit', compact('tipoproducto'));
     }
 
     /**
@@ -94,21 +82,14 @@ class TipoProductoController extends Controller
     public function update(Request $request, TipoProducto $tipoproducto)
     {
         $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'cantidad' => 'required',
-            'proveedor_id' => 'required'            
+            'nombre' => 'required',         
         ]);
         $tipoproducto->nombre = $request->input('nombre');
-        $tipoproducto->descripcion = $request->input('descripcion');
-        $tipoproducto->cantidad = $request->input('cantidad');
-        $tipoproducto->proveedor_id = $request['proveedor_id'];
 
         $tipoproducto->save();
 
-        $tipoproductos = TipoProducto::all();
-        $proveedores = Proveedor::all();
-        return view('tipoproductos.index', compact(['tipoproductos', 'proveedores']));
+        $tipoproductos = TipoProducto::all();        
+        return view('tipoproductos.index', compact('tipoproductos'));
     }
 
     /**

@@ -41,41 +41,7 @@
                                 text-gray-600 placeholder-gray-400
                                 outline-none">
                 </div>
-          
-                <div class="flex items-center mb-5">
-                  <!--         tip - here neede inline-block , but why? -->
-                  <label for="ci" class="inline-block w-20 mr-6 text-right 
-                                           font-bold text-gray-600">Descripción</label>
-                  <input value="{{old('descripcion')}}" type="text" name="descripcion" 
-                         class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
-                                text-gray-600 placeholder-gray-400
-                                outline-none">
-                </div>                                    
-
-                <div class="flex items-center mb-5">
-                    <!--         tip - here neede inline-block , but why? -->
-                    <label for="ciudad" class="inline-block w-20 mr-6 text-right 
-                                             font-bold text-gray-600">Cantidad</label>
-                    <input value="{{old('cantidad')}}" type="text" name="cantidad" 
-                           class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
-                                  text-gray-600 placeholder-gray-400
-                                  outline-none">
-                </div>
-
-                <div class="flex items-center mb-5">
-                    <!--         tip - here neede inline-block , but why? -->
-                    <label for="proveedor_id" class="inline-block w-20 mr-6 text-right 
-                                             font-bold text-gray-600">Proveedor</label>
-                    <select name="proveedor_id" class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
-                                  text-gray-600 placeholder-gray-400
-                                  outline-none">
-                            <option selected>Elegir proveedor</option>
-                        @foreach ($proveedores as $proveedor)
-                            <option value="{{$proveedor->id}}">{{$proveedor->name}}</option>                                                
-                        @endforeach
-                    </select>
-                </div>
-          
+                        
                 <div class="text-right">
                   <button type="submit" class="py-3 px-8 bg-indigo-400 text-white font-bold">Guardar</button> 
                 </div>

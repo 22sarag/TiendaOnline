@@ -17,13 +17,6 @@ class CreateTipoProductosTable extends Migration
             $table->id();
 
             $table->string('nombre');
-            $table->text('descripcion');
-            $table->integer('cantidad');
-
-            $table->unsignedBigInteger('proveedor_id');
-            $table->foreign('proveedor_id')
-                    ->references('id')->on('proveedors')
-                    ->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompraController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
@@ -25,6 +26,8 @@ Route::get('cursos/{curso}',  [CursoController::class, 'show']);
 Route::resource('productos', ProductoController::class);
 Route::resource('proveedors', ProveedorController::class);
 Route::resource('tipoproductos', TipoProductoController::class);
+
+Route::resource('compras', CompraController::class);
 
 Route::middleware(['auth:sanctum','verified'])->get('/dashboard', function () {
     return view('dashboard');

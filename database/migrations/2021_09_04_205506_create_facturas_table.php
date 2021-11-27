@@ -16,11 +16,14 @@ class CreateFacturasTable extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('detalle_factura_id');
+            $table->integer('precio_total');
 
-            $table->foreign('detalle_factura_id')
-                    ->references('id')->on('detalle_facturas')
-                    ->onDelete('cascade');
+            $table->unsignedBigInteger('compra_id');
+
+            $table->foreign('compra_id')
+                    ->references('id')->on('compras')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
 
             $table->timestamps();
         });
