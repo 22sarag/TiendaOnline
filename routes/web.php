@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\TipoProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +23,9 @@ Route::get('cursos/create',  [CursoController::class, 'create']);
 Route::get('cursos/{curso}',  [CursoController::class, 'show']);
 
 Route::resource('productos', ProductoController::class);
+Route::resource('proveedors', ProveedorController::class);
+Route::resource('tipoproductos', TipoProductoController::class);
 
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum','verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

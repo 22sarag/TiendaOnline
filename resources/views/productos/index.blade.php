@@ -3,44 +3,56 @@
         <div class="d-flex justify-content-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Productos') }}
-            </h2>
-            <a href="{{route('productos.create')}}" class="btn btn-primary">Crear Producto</a>
+            </h2>            
+            <a href="{{route('productos.create')}}" class="p-2 pl-5 pr-5 bg-blue-500 text-gray-100 text-lg rounded-lg focus:border-4 border-blue-300">Crear Producto</a>
         </div>       
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                          <th scope="col">Id</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Fecha Elaboración</th>
-                          <th scope="col">Fecha Vencimiento</th>
-                          <th scope="col">Compra Producto Cantidad</th>
-                          <th scope="col">Cantidad Disponible</th>
-                          <th scope="col">Precio Venta</th>
-                          <th scope="col">Tipo de Producto</th>
-                          <th scope="col">Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          @foreach ($productos as $producto)
-                          <tr>
-                            <td>{{$producto->id}}</td>
-                            <td>{{$producto->nombre}}</td>
-                            <td>{{$producto->fecha_elaboracion}}</td>
-                            <td>{{$producto->fecha_vencimiento}}</td>
-                            <td>{{$producto->compra_producto_cant}}</td>
-                            <td>{{$producto->cantidad_disponible}}</td>
-                            <td>{{$producto->precio_venta}}</td>
-                            <td>{{$producto->tipo_producto_id}}</td>
-                            <td><a href="{{route('productos.show', $producto)}}" class="btn btn-sm btn-info text-light">Editar</a></td>
-                          </tr>
-                          @endforeach                        
-                      </tbody>
-                </table>
+
+                <!-- component -->
+<table class="min-w-full border-collapse block md:table">
+    <thead class="block md:table-header-group">
+        <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">				
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Nombre</th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Fecha Elaboracion</th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Fecha Vencimiento</th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Cantidad compra</th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Cantidad Disponible</th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Precio Venta</th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Tipo Producto</th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="block md:table-row-group">
+        @foreach ($productos as $producto)                     
+            <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{$producto->nombre}}</td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">C.I.</span>{{$producto->fecha_elaboracion}}</td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Ciudad</span>{{$producto->fecha_vencimiento}}</td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Teléfono</span>{{$producto->compra_producto_cant}}</td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Dirección</span>{{$producto->cantidad_disponible}}</td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Dirección</span>{{$producto->precio_venta}}</td>
+                @foreach ($tipoproductos as $tipoproducto)
+                @if ($producto->tipo_producto_id == $tipoproducto->id)
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Dirección</span>{{$tipoproducto->nombre}}</td>                    
+                @endif
+                @endforeach
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                    <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                    <a href="{{route('productos.show', $producto)}}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 border border-yellow-500 rounded">Ver más</a>
+                    <a href="{{route('productos.edit', $producto)}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 border border-green-500 rounded">Editar</a>
+                    <form action="{{route('productos.destroy', $producto)}}" method="POST">
+                        @csrf @method('delete') 
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
             </div>
         </div>
     </div>

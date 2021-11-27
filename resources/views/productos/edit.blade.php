@@ -37,7 +37,7 @@
                   <!--         tip - here neede inline-block , but why? -->
                   <label for="nombre" class="inline-block w-20 mr-6 text-right 
                                            font-bold text-gray-600">Nombre</label>
-                  <input value="{{old('nombre')}}" type="text" name="nombre" 
+                  <input value="{{old('nombre', $producto->nombre)}}" type="text" name="nombre" 
                          class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                 text-gray-600 placeholder-gray-400
                                 outline-none">
@@ -47,7 +47,7 @@
                     <!--         tip - here neede inline-block , but why? -->
                     <label for="fecha_elaboracion" class="inline-block w-20 mr-6 text-right 
                                              font-bold text-gray-600">Fecha Elaboracion</label>
-                    <input type="date" id="fecha_elaboracion" name="fecha_elaboracion" 
+                    <input value="{{old('fecha_elaboracion', $producto->fecha_elaboracion)}}" type="date" id="fecha_elaboracion" name="fecha_elaboracion" 
                            class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
                                   text-gray-600 placeholder-gray-400
                                   outline-none">
@@ -57,7 +57,7 @@
                     <!--         tip - here neede inline-block , but why? -->
                     <label for="fecha_vencimiento" class="inline-block w-20 mr-6 text-right 
                                              font-bold text-gray-600">Fecha Vencimiento</label>
-                    <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" 
+                    <input value="{{old('fecha_vencimiento', $producto->fecha_vencimiento)}}" type="date" id="fecha_vencimiento" name="fecha_vencimiento" 
                            class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
                                   text-gray-600 placeholder-gray-400
                                   outline-none">
@@ -67,7 +67,7 @@
                   <!--         tip - here neede inline-block , but why? -->
                   <label for="compra_producto_cant" class="inline-block w-20 mr-6 text-right 
                                            font-bold text-gray-600">Compra Producto Cantidad</label>
-                  <input value="{{old('compra_producto_cant')}}" type="text" name="compra_producto_cant"
+                  <input value="{{old('compra_producto_cant', $producto->compra_producto_cant)}}" type="text" name="compra_producto_cant"
                          class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                 text-gray-600 placeholder-gray-400
                                 outline-none">
@@ -77,7 +77,7 @@
                     <!--         tip - here neede inline-block , but why? -->
                     <label for="cantidad_disponible" class="inline-block w-20 mr-6 text-right 
                                              font-bold text-gray-600">Cantidad Disponible</label>
-                    <input value="{{old('cantidad_disponible')}}" type="text" name="cantidad_disponible"
+                    <input value="{{old('cantidad_disponible', $producto->cantidad_disponible)}}" type="text" name="cantidad_disponible"
                            class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                   text-gray-600 placeholder-gray-400
                                   outline-none">
@@ -87,7 +87,7 @@
                     <!--         tip - here neede inline-block , but why? -->
                     <label for="precio_venta" class="inline-block w-20 mr-6 text-right 
                                              font-bold text-gray-600">Precio Venta</label>
-                    <input value="{{old('precio_venta')}}" type="text" name="precio_venta"
+                    <input value="{{old('precio_venta', $producto->precio_venta)}}" type="text" name="precio_venta"
                            class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                   text-gray-600 placeholder-gray-400
                                   outline-none">
@@ -108,7 +108,7 @@
                 </div>
           
                 <div class="text-right">
-                  <button type="submit" class="py-3 px-8 bg-indigo-400 text-white font-bold">Guardar</button> 
+                  <button type="submit" class="py-3 px-8 bg-indigo-400 text-white font-bold">Actualizar</button> 
                 </div>
           
               </form>

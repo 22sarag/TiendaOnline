@@ -16,9 +16,9 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::All();
-        $tipo_productos = TipoProducto::All();
+        $tipoproductos = TipoProducto::All();
 
-        return view('productos.index', compact(['productos','tipo_productos']));
+        return view('productos.index', compact(['productos','tipoproductos']));
     }
 
     /**
@@ -28,9 +28,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $tipo_productos = TipoProducto::All();
+        $tipoproductos = TipoProducto::All();
 
-        return view('productos.create', compact('tipo_productos'));
+        return view('productos.create', compact('tipoproductos'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ProductoController extends Controller
             'compra_producto_cant' => 'required',
             'cantidad_disponible' => 'required',
             'precio_venta' => 'required',
-            'tipo_productos' => 'required'
+            'tipoproductos' => 'required'
         ]);
 
         $producto = new Producto;
@@ -58,14 +58,14 @@ class ProductoController extends Controller
         $producto->compra_producto_cant = $request->input('compra_producto_cant');
         $producto->cantidad_disponible = $request->input('cantidad_disponible');
         $producto->precio_venta = $request->input('precio_venta');
-        $producto->tipo_producto_id = $request['tipo_productos'];
+        $producto->tipo_producto_id = $request['tipoproductos'];
 
         $producto->save();
 
         $productos = Producto::All();
-        $tipo_productos = TipoProducto::All();
+        $tipoproductos = TipoProducto::All();
 
-        return view('productos.index', compact(['productos','tipo_productos']));
+        return view('productos.index', compact(['productos','tipoproductos']));
     }
 
     /**
@@ -76,8 +76,8 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        $tipo_productos = TipoProducto::All();
-        return view('productos.show', compact(['producto', 'tipo_productos']));
+        $tipoproductos = TipoProducto::All();
+        return view('productos.show', compact(['producto', 'tipoproductos']));
     }
 
     /**
@@ -86,9 +86,13 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        //
+        //$producto=Producto::find('id');
+        $tipoproductos = TipoProducto::All();
+
+        return view('productos.edit',compact('producto','tipoproductos'));
+
     }
 
     /**
@@ -100,7 +104,17 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $producto=Producto::find('id');
+        $producto->nombre = $request->input('nombre');
+        $producto->fecha_elaboracion = $request->input('fecha_elaboracion');
+        $producto->fecha_vencimiento = $request->input('fecha_vencimiento');
+        $producto->compra_producto_cant = $request->input('compra_producto_cant');
+        $producto->cantidad_disponible = $request->input('cantidad_disponible');
+        $producto->precio_venta = $request->input('precio_venta');
+        $producto->tipo_producto_id = $request['tipo_productos'];
+        $producto->update();
+
+
     }
 
     /**
@@ -109,8 +123,10 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+
+        return redirect()->route('productos.index');
     }
 }

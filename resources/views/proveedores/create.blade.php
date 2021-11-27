@@ -29,45 +29,24 @@
             <!--   tip; mx-auto -- jagab ilusti keskele  -->
             <div class="bg-white p-10 md:w-3/4 lg:w-1/2 mx-auto">
           
-              <form action="{{route('productos.store')}}" method="POST">
+              <form action="{{route('proveedors.store')}}" method="POST">
                 @csrf
-                
                 <!--       flex - asjad korvuti, nb! flex-1 - element kogu ylejaanud laius -->
                 <div class="flex items-center mb-5">
                   <!--         tip - here neede inline-block , but why? -->
-                  <label for="nombre" class="inline-block w-20 mr-6 text-right 
+                  <label for="name" class="inline-block w-20 mr-6 text-right 
                                            font-bold text-gray-600">Nombre</label>
-                  <input value="{{old('nombre')}}" type="text" name="nombre" 
+                  <input value="{{old('name')}}" type="text" name="name" placeholder="Nombre del Proveedor" 
                          class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                 text-gray-600 placeholder-gray-400
                                 outline-none">
                 </div>
-
-                <div class="flex items-center mb-5">
-                    <!--         tip - here neede inline-block , but why? -->
-                    <label for="fecha_elaboracion" class="inline-block w-20 mr-6 text-right 
-                                             font-bold text-gray-600">Fecha Elaboracion</label>
-                    <input type="date" id="fecha_elaboracion" name="fecha_elaboracion" 
-                           class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
-                                  text-gray-600 placeholder-gray-400
-                                  outline-none">
-                </div>
-
-                <div class="flex items-center mb-5">
-                    <!--         tip - here neede inline-block , but why? -->
-                    <label for="fecha_vencimiento" class="inline-block w-20 mr-6 text-right 
-                                             font-bold text-gray-600">Fecha Vencimiento</label>
-                    <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" 
-                           class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
-                                  text-gray-600 placeholder-gray-400
-                                  outline-none">
-                </div>
           
                 <div class="flex items-center mb-5">
                   <!--         tip - here neede inline-block , but why? -->
-                  <label for="compra_producto_cant" class="inline-block w-20 mr-6 text-right 
-                                           font-bold text-gray-600">Compra Producto Cantidad</label>
-                  <input value="{{old('compra_producto_cant')}}" type="text" name="compra_producto_cant"
+                  <label for="ci" class="inline-block w-20 mr-6 text-right 
+                                           font-bold text-gray-600">C.I.</label>
+                  <input value="{{old('ci')}}" type="text" name="ci" placeholder="Carnet de Identidad del Proveedor" 
                          class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                 text-gray-600 placeholder-gray-400
                                 outline-none">
@@ -75,9 +54,9 @@
 
                 <div class="flex items-center mb-5">
                     <!--         tip - here neede inline-block , but why? -->
-                    <label for="cantidad_disponible" class="inline-block w-20 mr-6 text-right 
-                                             font-bold text-gray-600">Cantidad Disponible</label>
-                    <input value="{{old('cantidad_disponible')}}" type="text" name="cantidad_disponible"
+                    <label for="ciudad" class="inline-block w-20 mr-6 text-right 
+                                             font-bold text-gray-600">Ciudad</label>
+                    <input value="{{old('ciudad')}}" type="text" name="ciudad" placeholder="Ciudad del Proveedor" 
                            class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                   text-gray-600 placeholder-gray-400
                                   outline-none">
@@ -85,9 +64,9 @@
 
                 <div class="flex items-center mb-5">
                     <!--         tip - here neede inline-block , but why? -->
-                    <label for="precio_venta" class="inline-block w-20 mr-6 text-right 
-                                             font-bold text-gray-600">Precio Venta</label>
-                    <input value="{{old('precio_venta')}}" type="text" name="precio_venta"
+                    <label for="telefono" class="inline-block w-20 mr-6 text-right 
+                                             font-bold text-gray-600">Teléfono</label>
+                    <input value="{{old('telefono')}}" type="text" name="telefono" placeholder="Carnet de Identidad del Proveedor" 
                            class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                   text-gray-600 placeholder-gray-400
                                   outline-none">
@@ -95,16 +74,12 @@
 
                 <div class="flex items-center mb-5">
                     <!--         tip - here neede inline-block , but why? -->
-                    <label for="tipoproductos" class="inline-block w-20 mr-6 text-right 
-                                             font-bold text-gray-600">Tipo Producto</label>
-                    <select name="tipoproductos" class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
+                    <label for="direccion" class="inline-block w-20 mr-6 text-right 
+                                             font-bold text-gray-600">Dirección</label>
+                    <input value="{{old('direccion')}}" type="text" name="direccion" placeholder="Carnet de Identidad del Proveedor" 
+                           class="flex-1 py-2 border-b-2 border-gray-400 focus:border-indigo-400 
                                   text-gray-600 placeholder-gray-400
                                   outline-none">
-                            <option selected>Elegir tipo producto</option>
-                        @foreach ($tipoproductos as $tipoproducto)
-                            <option value="{{$tipoproducto->id}}">{{$tipoproducto->nombre}}</option>                                                
-                        @endforeach
-                    </select>
                 </div>
           
                 <div class="text-right">

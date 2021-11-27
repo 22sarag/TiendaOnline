@@ -10,26 +10,34 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title"><strong>Nombre de Producto: </strong> {{$producto->nombre}}</h2>
+                <!-- component -->
+                <div class="h-screen">
+                    <div class="w-80 mt-24 m-auto lg:mt-16 max-w-sm">
+                    <div class="bg-white shadow-2xl rounded-b-3xl">
+                        <h2 class="text-center text-gray-800 text-2xl font-bold pt-4">Nombre: {{$producto->nombre}}</h2>                        
+                        <div class="grid grid-cols-4 w-72 lg:w-5/6 m-auto bg-indigo-50 mt-2 p-4 lg:p-4 rounded-2xl">
+                        <div class="col-span-2 pt-1">
+                            <p class="text-gray-800 font-bold lg:text-sm">Fecha Elaboracion:</p><p class="text-gray-800 font-regular lg:text-sm">{{$producto->fecha_elaboracion}}</p>
+                            <p class="text-gray-800 font-bold lg:text-sm">Fecha Vencimiento:</p><p class="text-gray-800 font-regular lg:text-sm">{{$producto->fecha_vencimiento}}</p>
+                            <p class="text-gray-800 font-bold lg:text-sm">Compra Cantidad:</p><p class="text-gray-800 font-regular lg:text-sm">{{$producto->compra_producto_cant}}</p>
+                            <p class="text-gray-800 font-bold lg:text-sm">Cantidad Disponible:</p><p class="text-gray-800 font-regular lg:text-sm">{{$producto->cantidad_disponible}}</p>
+                            <p class="text-gray-800 font-bold lg:text-sm">Precio Venta:</p><p class="text-gray-800 font-regular lg:text-sm">{{$producto->precio_venta}}</p>
+                            <p class="text-gray-800 font-bold lg:text-sm">Tipo Producto:</p><p class="text-gray-800 font-regular lg:text-sm">
+                                @foreach ($tipoproductos as $tipoproducto)
+                                    @if ($tipoproducto->id == $producto->tipo_producto_id)
+                                        {{$tipoproducto->nombre}}
+                                    @endif
+                                @endforeach
+                            </p>    
+                        </div>
+                    </div>                                                
+                    <div class="text-center">
+                        <a class="p-2 pl-5 pr-5 bg-indigo-500 text-gray-100 text-md rounded-md focus:border-4 border-indigo-300" href="{{route('productos.index')}}">Volver</a>                    
                     </div>
-                    <div class="card-body">
-                        <p><strong>Fecha de Elaboración: </strong> {{$producto->fecha_elaboracion}}</p>
-                        <p><strong>Fecha de Vencimiento: </strong> {{$producto->fecha_vencimiento}}</p>
-                        <p><strong>Precio de Compra: </strong> {{$producto->compra_producto_cant}}</p>
-                        <p><strong>Cantidad Disponible: </strong> {{$producto->cantidad_disponible}}</p>
-                        <p><strong>Precio de Venta: </strong> {{$producto->precio_venta}}</p>
-                        
-                        @foreach ($tipo_productos as $tipo_producto)
-                            @if ($producto->tipo_producto_id == $tipo_producto->id)
-                                <p><strong>Tipo de Producto: </strong> {{$tipo_producto->nombre}}</p>    
-                            @endif
-                        @endforeach                        
-                        
+                    </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </x-app-layout>

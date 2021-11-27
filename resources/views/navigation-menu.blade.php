@@ -15,6 +15,12 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('proveedors.index') }}" :active="request()->routeIs('proveedors.*')">
+                        {{ __('Proveedores') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('tipoproductos.index') }}" :active="request()->routeIs('tipoproductos.*')">
+                        {{ __('Tipo Productos') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('productos.index') }}" :active="request()->routeIs('productos.*')">
                         {{ __('Productos') }}
                     </x-jet-nav-link>
