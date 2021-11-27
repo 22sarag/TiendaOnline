@@ -24,6 +24,9 @@
                     <x-jet-nav-link href="{{ route('productos.index') }}" :active="request()->routeIs('productos.*')">
                         {{ __('Productos') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="geolocalizacion" :active="request()->routeIs('geolocalizacion')">
+                        {{ __('Geolocalizacion') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

@@ -23,6 +23,9 @@ Route::get('cursos',  [CursoController::class, 'index']);
 Route::get('cursos/create',  [CursoController::class, 'create']);
 Route::get('cursos/{curso}',  [CursoController::class, 'show']);
 
+Route::get('geolocalizacion', function(){
+    return view('geolocalizacion.index');
+});
 Route::resource('productos', ProductoController::class);
 Route::resource('proveedors', ProveedorController::class);
 Route::resource('tipoproductos', TipoProductoController::class);
