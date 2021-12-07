@@ -56,5 +56,7 @@
                 </x-jet-button>
             </div>
         </form>
+        <a href="{{ url('/auth/redirect/github') }}" class="btn text-light" style="background-color: #000000;"><i class="fab fa-github"></i> Github</a>
+        {{-- <a href="{{ url('/auth/redirect/google') }}" class="btn text-light" style="background-color: #ea4335;"><i class="fab fa-google-plus-g"></i> Google</a> --}}
     </x-jet-authentication-card>
 </x-guest-layout>

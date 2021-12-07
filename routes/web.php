@@ -6,7 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TipoProductoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +20,19 @@ use App\Http\Controllers\TipoProductoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// middleware(['auth:sanctum','verified'])->
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 Route::get('/', HomeController::class);
 Route::get('cursos',  [CursoController::class, 'index']);
 Route::get('cursos/create',  [CursoController::class, 'create']);
 Route::get('cursos/{curso}',  [CursoController::class, 'show']);
+
+Route::get('/auth/redirect/{provider}', [SocialController::class, 'redirectToProvider']);
+Route::get('/auth/callback/{provider}', [SocialController::class, 'handleProviderCallback']);
 
 Route::get('geolocalizacion', function(){
     return view('geolocalizacion.index');
@@ -32,6 +43,4 @@ Route::resource('tipoproductos', TipoProductoController::class);
 
 Route::resource('compras', CompraController::class);
 
-Route::middleware(['auth:sanctum','verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
