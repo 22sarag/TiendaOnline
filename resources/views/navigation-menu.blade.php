@@ -27,6 +27,9 @@
                     <x-jet-nav-link href="geolocalizacion" :active="request()->routeIs('geolocalizacion')">
                         {{ __('Geolocalizacion') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{route('contactanos.index')}}" :active="request()->routeIs('contactanos.index')">
+                        {{ __('Contáctanos') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

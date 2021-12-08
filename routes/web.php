@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
@@ -27,6 +28,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/', HomeController::class);
+
 Route::get('cursos',  [CursoController::class, 'index']);
 Route::get('cursos/create',  [CursoController::class, 'create']);
 Route::get('cursos/{curso}',  [CursoController::class, 'show']);
@@ -37,10 +39,13 @@ Route::get('/auth/callback/{provider}', [SocialController::class, 'handleProvide
 Route::get('geolocalizacion', function(){
     return view('geolocalizacion.index');
 });
+
 Route::resource('productos', ProductoController::class);
 Route::resource('proveedors', ProveedorController::class);
 Route::resource('tipoproductos', TipoProductoController::class);
-
 Route::resource('compras', CompraController::class);
+
+Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
+Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
 
 
